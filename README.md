@@ -1,0 +1,163 @@
+================================================================================
+    SCHEMA DE SEMNATURA DIGITALA GUILLOU-QUISQUATER (GQ) in Z*n
+    Proiect - Tehnici Criptografice Moderne
+================================================================================
+
+CUPRINS
+-------
+1. Descrierea fisierelor
+2. Cerinte sistem
+3. Compilare
+4. Rulare
+5. Rezultate asteptate
+6. Structura codului
+
+================================================================================
+1. DESCRIEREA FISIERELOR
+================================================================================
+
+Proiectul contine 3 fisiere sursa Java:
+
+  - GQSignature.java  - Implementarea principala a algoritmului GQ
+                        (generare parametri, certificare, semnare, verificare)
+  
+  - GQDemo.java       - Demonstratie completa cu doi utilizatori (Alice si Bob)
+                        Include teste de integritate si autenticitate
+  
+  - GQBenchmark.java  - Masuratori comparative de performanta GQ vs RSA
+                        Testeaza chei de 1024 si 2048 biti
+
+================================================================================
+2. CERINTE SISTEM
+================================================================================
+
+  - Java Development Kit (JDK) versiunea 8 sau mai noua
+  - Pentru verificare versiune, rulati in terminal:
+    
+    java -version
+    javac -version
+
+  - Daca javac nu este disponibil, instalati JDK complet:
+    - Windows: descarcati de la https://adoptium.net/ sau Oracle
+    - Linux (Ubuntu/Debian): sudo apt install default-jdk
+    - macOS: brew install openjdk
+
+================================================================================
+3. COMPILARE
+================================================================================
+
+Deschideti un terminal/command prompt in directorul cu fisierele .java
+
+PASUL 1: Compilati toate fisierele:
+
+  javac *.java
+
+Dupa compilare, vor aparea fisierele .class:
+  - GQSignature.class
+  - GQSignature$Semnatura.class  (clasa interna pentru semnatura)
+  - GQDemo.class
+  - GQBenchmark.class
+
+================================================================================
+4. RULARE
+================================================================================
+
+A) Pentru DEMONSTRATIA functionalitatii:
+   
+   java GQDemo
+
+   Aceasta va afisa:
+   - Generarea parametrilor de sistem de catre CA
+   - Inregistrarea utilizatorilor Alice si Bob
+   - Semnarea unui mesaj de catre Alice
+   - Verificarea semnaturii de catre Bob
+   - Test cu mesaj modificat (trebuie sa fie INVALID)
+   - Test cu identitate falsa (trebuie sa fie INVALID)
+   - Semnarea si verificarea unui mesaj de la Bob catre Alice
+
+B) Pentru Benchmark (comparatie performanta GQ vs RSA):
+   
+   java GQBenchmark
+
+   Aceasta va afisa:
+   - Timpi de executie pentru chei de 1024 biti
+   - Timpi de executie pentru chei de 2048 biti
+   - Comparatie intre GQ, RSA Signature si RSA Encryption
+
+================================================================================
+5. REZULTATE ASTEPTATE
+================================================================================
+
+A) La rularea GQDemo:
+
+   ======================================================================
+   DEMONSTRATIE SCHEMA GUILLOU-QUISQUATER
+   ======================================================================
+
+   [PASUL 1] SETUP SISTEM - Autoritatea de Certificare (CA)
+   ...
+   [PASUL 5] BOB VERIFICA SEMNATURA LUI ALICE
+   Rezultat verificare: VALIDA
+
+   [PASUL 6] TEST INTEGRITATE - Mesaj Modificat
+   Rezultat verificare: INVALIDA
+   Corect! Mesajul modificat a fost detectat.
+
+   [PASUL 7] TEST AUTENTICITATE - Identitate Falsa
+   Rezultat verificare: INVALIDA
+   Corect! Identitatea falsa a fost detectata.
+   ...
+   TOATE TESTELE AU FOST EXECUTATE CU SUCCES!
+
+B) La rularea GQBenchmark:
+
+   ======================================================================
+   BENCHMARK GUILLOU-QUISQUATER vs RSA
+   ======================================================================
+
+   --- Dimensiune cheie: 1024 biti ---
+
+   GUILLOU-QUISQUATER:
+     Setup sistem:           XXX ms
+     Generare certificat:    XXX ms
+     Semnare (medie):        XXX ms
+     Verificare (medie):     XXX ms
+     Verificare valida:      DA
+     Dimensiune semnatura:   XXX bytes
+
+   RSA SIGNATURE (SHA256withRSA):
+     Generare chei:          XXX ms
+     Semnare (medie):        XXX ms
+     Verificare (medie):     XXX ms
+     ...
+
+================================================================================
+6. STRUCTURA CODULUI
+================================================================================
+
+GQSignature.java:
+-----------------
+  Clasa principala cu doi constructori:
+  
+  - GQSignature(int bitLength, int k) 
+    - Pentru Autoritatea de Certificare (CA)
+    - Genereaza parametrii: p, q (prime), n=p*q, v=65537, s=v^(-1) mod phi(n)
+  
+  - GQSignature(BigInteger n, BigInteger v, int k)
+    - Pentru utilizatori obisnuiti
+    - Primeste doar parametrii publici
+  
+  Metode principale:
+  - generareCertificat(String identitate) - calculeaza J = H(ID)^s mod n
+  - semnare(String mesaj, String identitate, BigInteger certificat)
+  - verificare(String mesaj, Semnatura sem)
+
+GQDemo.java:
+------------
+  Demonstratie pas cu pas a protocolului complet.
+  Testeaza corectitudinea prin scenarii pozitive si negative.
+
+GQBenchmark.java:
+-----------------
+  Masuratori de performanta cu warmup JVM si 100 iteratii.
+  Compara GQ cu java.security.Signature (RSA) si javax.crypto.Cipher (RSA).
