@@ -1,6 +1,6 @@
 # Schema de semnătură digitală Guillou–Quisquater (GQ) în Z\*<sub>n</sub>
 
-> Proiect la disciplina **Tehnici Criptografice Moderne** — Master SISC, UPT (An 1, Sem 1)
+> Proiect la disciplina **Tehnici Criptografice Moderne**
 
 Implementare în Java a schemei de semnătură digitală bazată pe identitate **Guillou–Quisquater**, împreună cu o demonstrație a protocolului și un benchmark comparativ față de **RSA**.
 
@@ -186,10 +186,3 @@ Testează corectitudinea prin scenarii pozitive și negative.
 
 Măsurători de performanță cu **warmup JVM** și **100 de iterații**.
 Compară GQ cu `java.security.Signature` (RSA) și `javax.crypto.Cipher` (RSA).
-
----
-
-## Autor
-
-**Flavia Martinecz** — Master SISC, UPT
-Coordonator: _Bogdan Groza_
