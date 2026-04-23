@@ -1,7 +1,5 @@
-================================================================================
-    SCHEMA DE SEMNATURA DIGITALA GUILLOU-QUISQUATER (GQ) in Z*n
-    Proiect - Tehnici Criptografice Moderne
-================================================================================
+SCHEMA DE SEMNATURA DIGITALA GUILLOU-QUISQUATER (GQ) in Z*n
+Proiect - Tehnici Criptografice Moderne
 
 CUPRINS
 -------
@@ -12,9 +10,8 @@ CUPRINS
 5. Rezultate asteptate
 6. Structura codului
 
-================================================================================
+
 1. DESCRIEREA FISIERELOR
-================================================================================
 
 Proiectul contine 3 fisiere sursa Java:
 
@@ -27,9 +24,7 @@ Proiectul contine 3 fisiere sursa Java:
   - GQBenchmark.java  - Masuratori comparative de performanta GQ vs RSA
                         Testeaza chei de 1024 si 2048 biti
 
-================================================================================
 2. CERINTE SISTEM
-================================================================================
 
   - Java Development Kit (JDK) versiunea 8 sau mai noua
   - Pentru verificare versiune, rulati in terminal:
@@ -42,9 +37,7 @@ Proiectul contine 3 fisiere sursa Java:
     - Linux (Ubuntu/Debian): sudo apt install default-jdk
     - macOS: brew install openjdk
 
-================================================================================
 3. COMPILARE
-================================================================================
 
 Deschideti un terminal/command prompt in directorul cu fisierele .java
 
@@ -58,9 +51,7 @@ Dupa compilare, vor aparea fisierele .class:
   - GQDemo.class
   - GQBenchmark.class
 
-================================================================================
 4. RULARE
-================================================================================
 
 A) Pentru DEMONSTRATIA functionalitatii:
    
@@ -84,9 +75,7 @@ B) Pentru Benchmark (comparatie performanta GQ vs RSA):
    - Timpi de executie pentru chei de 2048 biti
    - Comparatie intre GQ, RSA Signature si RSA Encryption
 
-================================================================================
 5. REZULTATE ASTEPTATE
-================================================================================
 
 A) La rularea GQDemo:
 
