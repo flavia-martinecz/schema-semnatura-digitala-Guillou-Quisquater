@@ -1,6 +1,6 @@
-# Schema de semnătură digitală Guillou–Quisquater (GQ) în Z\*<sub>n</sub>
+# Schema de semnătură digitală Guillou–Quisquater în Z\*<sub>n</sub>
 
-> Proiect la disciplina **Tehnici Criptografice Moderne**
+> Proiect **Tehnici Criptografice Moderne**
 
 Implementare în Java a schemei de semnătură digitală bazată pe identitate **Guillou–Quisquater**, împreună cu o demonstrație a protocolului și un benchmark comparativ față de **RSA**.
 
